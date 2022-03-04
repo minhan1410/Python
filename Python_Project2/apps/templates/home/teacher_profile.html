@@ -1,0 +1,179 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Teacher Profile {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">
+                                    {% if teacher %}
+                                        Update Teacher   
+                                    {% else %}
+                                        Insert Teacher
+                                    {% endif %} 
+                                </h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/teacher">Teacher List</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Teacher Profile</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Teacher Profile</h5>
+                            </div>
+                            <div class="card-body">
+                                    {% if msg %}
+                                        <span class="mb-0 text-muted">
+                                            {{ msg | safe }}     
+                                        </span>
+                                        <br><br>
+                                        {% else %}
+                                    {% endif %} 
+
+                                    {% if not success %}
+                                        <form role="form" method="post" action="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.hidden_tag() }} 
+                                                <div class="form-group">
+                                                    {{ form.teacher_code.label }}
+                                                    {% if teacher %}
+                                                        {{ form.teacher_code(placeholder="Nhập mã giảng viên", class="form-control", value=teacher.teacher_code) }}
+                                                    {% else %}
+                                                        {{ form.teacher_code(placeholder="Nhập mã giảng viên", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-xl-6">
+                                                        {{ form.first_name.label }}
+                                                        {% if teacher %}
+                                                            {{ form.first_name(placeholder="Nhập tên", class="form-control", value=teacher.first_name) }}
+                                                        {% else %}
+                                                            {{ form.first_name(placeholder="Nhập tên", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="form-group col-xl-6">
+                                                        {{ form.last_name.label }}
+                                                        {% if teacher %}
+                                                            {{ form.last_name(placeholder="Nhập họ đệm", class="form-control", value=teacher.last_name) }}
+                                                        {% else %}
+                                                            {{ form.last_name(placeholder="Nhập họ đệm", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.date_birth.label }}
+                                                    {% if teacher %}
+                                                        {{ form.date_birth(placeholder="Nhập ngày sinh", class="form-control", value=teacher.date_birth) }}
+                                                    {% else %}
+                                                        {{ form.date_birth(placeholder="Nhập ngày sinh", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.email.label }}
+                                                    {% if teacher %}
+                                                        {{ form.email(placeholder="Nhập email", class="input form-control", type="email", value=teacher.email) }}
+                                                    {% else %}
+                                                        {{ form.email(placeholder="Nhập email", class="input form-control", type="email") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="form-group col-4">
+                                                        {{ form.xa.label }}
+                                                        {% if teacher %}
+                                                            {{ form.xa(placeholder="Nhập phường/xã", class="form-control", value=teacher.xa) }}
+                                                        {% else %}
+                                                            {{ form.xa(placeholder="Nhập phường/xã", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                        {{ form.quan.label }}
+                                                        {% if teacher %}
+                                                            {{ form.quan(placeholder="Nhập quận/huyện", class="form-control", value=teacher.quan) }}
+                                                        {% else %}
+                                                            {{ form.quan(placeholder="Nhập quận/huyện", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                        {{ form.city.label }}
+                                                        {% if teacher %}
+                                                            {{ form.city(placeholder="Nhập tỉnh/thành phố", class="form-control", value=teacher.city) }}
+                                                        {% else %}
+                                                            {{ form.city(placeholder="Nhập tỉnh/thành phố", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.address.label }}
+                                                    {% if teacher %}
+                                                        {{ form.address(placeholder="Nhập địa chỉ", class="form-control", value=teacher.address) }}
+                                                    {% else %}
+                                                        {{ form.address(placeholder="Nhập địa chỉ", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.phone.label }}
+                                                    {% if teacher %}
+                                                        {{ form.phone(placeholder="Nhập số điện thoại", class="form-control", value=teacher.phone) }}
+                                                    {% else %}
+                                                        {{ form.phone(placeholder="Nhập số điện thoại", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                {% if teacher %}
+                                                    <button type="submit" name="update_teacher" value="{{teacher.id}}" class="btn btn-primary">Cập nhập</button>
+                                                {% else %}
+                                                    <button type="submit" name="new_teacher" class="btn btn-primary">Thêm mới</button>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+
+    <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable();
+        });
+    </script>
+
+{% endblock javascripts %}

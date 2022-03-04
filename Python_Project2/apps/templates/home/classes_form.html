@@ -1,0 +1,137 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Class Form {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">
+                                    {% if classes %}
+                                        Update Class   
+                                    {% else %}
+                                        Insert Class
+                                    {% endif %} 
+                                </h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/classes">Class</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Class Form</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Class Form</h5>
+                            </div>
+                            <div class="card-body">
+                                    {% if msg %}
+                                        <span class="mb-0 text-muted">
+                                            {{ msg | safe }}     
+                                        </span>
+                                        <br><br>
+                                        {% else %}
+                                    {% endif %} 
+
+                                    {% if not success %}
+                                        <form role="form" method="post" action="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.hidden_tag() }} 
+                                                <div class="form-group">
+                                                    {{ form.lesson.label }}
+                                                    {% if classes %}
+                                                        {{ form.lesson(placeholder="Nhập lớp học", class="form-control", value=classes.lesson) }}
+                                                    {% else %}
+                                                        {{ form.lesson(placeholder="Nhập lớp học", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.course_id.label }}
+                                                    {% if classes %}
+                                                        {{ form.course_id(class="form-control", value=classes.course_id) }}
+                                                    {% else %}
+                                                        {{ form.course_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="form-group col-6">
+                                                        {{ form.start_date.label }}
+                                                        {% if classes %}
+                                                            {{ form.start_date(placeholder="Nhập start date", class="form-control", value=classes.start_date) }}
+                                                        {% else %}
+                                                            {{ form.start_date(placeholder="Nhập start date", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        {{ form.end_date.label }}
+                                                        {% if classes %}
+                                                            {{ form.end_date(placeholder="Nhập end date", class="form-control", value=classes.end_date) }}
+                                                        {% else %}
+                                                            {{ form.end_date(placeholder="Nhập end date", class="form-control") }}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.teacher_id.label }}
+                                                    {% if classes %}
+                                                        {{ form.teacher_id(class="form-control", value=classes.teacher_id) }}
+                                                    {% else %}
+                                                        {{ form.teacher_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                {% if classes %}
+                                                    <button type="submit" name="update_class" value="{{classes.id}}" class="btn btn-primary">Cập nhập</button>
+                                                {% else %}
+                                                    <button type="submit" name="new_class" class="btn btn-primary">Thêm mới</button>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+
+    <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable();
+        });
+    </script>
+
+{% endblock javascripts %}

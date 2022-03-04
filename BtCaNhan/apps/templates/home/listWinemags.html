@@ -1,0 +1,168 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css'>
+</head>
+
+{% extends "layouts/base.html" %}
+
+{% block title %} List Winemags {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+    .table td,
+    .table th {
+        max-width: 100px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    #example_filter>label,
+    #example_length>label {
+        font-weight: bold;
+    }
+
+    .dataTables_length,
+    .dataTables_wrapper {
+        font-size: 1.6rem;
+    }
+
+    .dataTables_length select,
+    .dataTables_length input,
+    .dataTables_wrapper select,
+    .dataTables_wrapper input {
+        background-color: #f9f9f9;
+        border: 1px solid #999;
+        border-radius: 4px;
+        height: 3rem;
+        line-height: 2;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    .dataTables_length .dataTables_length,
+    .dataTables_length .dataTables_filter,
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+        margin-top: 30px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        display: inline-flex;
+    }
+
+    .paginate_button {
+        min-width: 4rem;
+        display: inline-block;
+        text-align: center;
+        padding: 1rem 1.6rem;
+        margin-top: -1rem;
+        border: 2px solid lightblue;
+    }
+
+    .paginate_button:not(.previous) {
+        border-left: none;
+    }
+
+    .paginate_button.previous {
+        border-radius: 8px 0 0 8px;
+        min-width: 7rem;
+    }
+
+    .paginate_button.next {
+        border-radius: 0 8px 8px 0;
+        min-width: 7rem;
+    }
+
+    .paginate_button:hover {
+        cursor: pointer;
+        background-color: #eee;
+        text-decoration: none;
+    }
+</style>
+{% endblock stylesheets %}
+
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-bg">
+        <span class="r"></span>
+        <span class="r s"></span>
+        <span class="r s"></span>
+        <span class="r"></span>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <div class="mb-4">
+                <i class="feather icon-users auth-icon"></i>
+            </div>
+            <h3 class="mb-4">List Winemags: {{length}}</h3>
+
+            <!-- <nav class="navbar navbar-light bg-light ">
+                <form class="form-inline" action="http://localhost:1410/resultquerywinemags" method="POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="search" aria-label="Search"
+                        name="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav> -->
+
+            <table id="example" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="th-sm">no</th>
+                        <th class="th-sm">country</th>
+                        <th class="th-sm">description</th>
+                        <th class="th-sm">designation</th>
+                        <th class="th-sm">points</th>
+                        <th class="th-sm">price</th>
+                        <th class="th-sm">province</th>
+                        <th class="th-sm">region_1</th>
+                        <th class="th-sm">region_2</th>
+                        <th class="th-sm">taster_name</th>
+                        <th class="th-sm">taster twitter handle</th>
+                        <th class="th-sm">title</th>
+                        <th class="th-sm">variety</th>
+                        <th class="th-sm">winery</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for i,winemag in winemags %}
+                    <tr>
+                        <td>{{i}}</td>
+                        <td>{{winemag['country']}}</td>
+                        <td>{{winemag['description']}}</td>
+                        <td>{{winemag['designation']}}</td>
+                        <td>{{winemag['points']}}</td>
+                        <td>{{winemag['price']}}</td>
+                        <td>{{winemag['province']}}</td>
+                        <td>{{winemag['region_1']}}</td>
+                        <td>{{winemag['region_2']}}</td>
+                        <td>{{winemag['taster_name']}}</td>
+                        <td>{{winemag['taster_twitter_handle']}}</td>
+                        <td>{{winemag['title']}}</td>
+                        <td>{{winemag['variety']}}</td>
+                        <td>{{winemag['winery']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    });
+</script>
+{% endblock javascripts %}

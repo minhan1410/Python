@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Class list of weekdays {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">
+                                    {% if classes %}
+                                        Update class list of weekday   
+                                    {% else %}
+                                        Insert class list of weekday
+                                    {% endif %} 
+                                </h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/class_weekday">Class list of weekdays</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Class weekday form</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Class weekday form</h5>
+                            </div>
+                            <div class="card-body">
+                                    {% if msg %}
+                                        <span class="mb-0 text-muted">
+                                            {{ msg | safe }}     
+                                        </span>
+                                        <br><br>
+                                        {% else %}
+                                    {% endif %} 
+
+                                    {% if not success %}
+                                        <form role="form" method="post" action="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.hidden_tag() }} 
+                                                <div class="form-group">
+                                                    {{ form.class_id.label }}
+                                                    {% if class_weekday %}
+                                                        {{ form.class_id(class="form-control", value=class_weekday.class_id) }}
+                                                    {% else %}
+                                                        {{ form.class_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.hours.label }}
+                                                    {% if class_weekday %}
+                                                        {{ form.hours(placeholder="Nhập số giờ học", class="form-control", value=class_weekday.hours) }}
+                                                    {% else %}
+                                                        {{ form.hours(placeholder="Nhập số giờ học", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{ form.weekday_id.label }}
+                                                    {% if class_weekday %}
+                                                        {{ form.weekday_id(class="form-control", value=class_weekday.weekday_id) }}
+                                                    {% else %}
+                                                        {{ form.weekday_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                {% if class_weekday %}
+                                                    <button type="submit" name="update_class_weekday" value="{{class_weekday.id}}" class="btn btn-primary">Cập nhập</button>
+                                                {% else %}
+                                                    <button type="submit" name="new_class_weekday" class="btn btn-primary">Thêm mới</button>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+
+{% endblock javascripts %}

@@ -1,0 +1,86 @@
+
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a target="_blank" 
+                   href="https://appseed.us/admin-dashboards/flask-datta-able" class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div>
+                    <span class="b-title">Flask Datta Able</span>
+                </a>
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" 
+                        class="nav-item {% if 'index' in segment %} active {% endif %}">
+                        <a href="/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Student & Teacher</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'student' in segment %} active {% endif %}">
+                        <a href="/student" class="nav-link "><span class="pcoded-micon"><i class="feather icon-award"></i></span><span class="pcoded-mtext">Sinh viên</span></a>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'teacher' in segment %} active {% endif %}">
+                        <a href="/teacher" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Giảng viên</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Course & Category</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'course' in segment %} active {% endif %}">
+                        <a href="/course" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Môn học</span></a>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'category' in segment %} active {% endif %}">
+                        <a href="/category" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Bộ môn</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Weekday</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'weekday' in segment %} active {% endif %}">
+                        <a href="/weekday" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Buổi học</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Class</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'classes' in segment %} active {% endif %}">
+                        <a href="/classes" class="nav-link "><span class="pcoded-micon"><i class="feather icon-bookmark"></i></span><span class="pcoded-mtext">Lớp học</span></a>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'class_student' in segment %} active {% endif %}">
+                        <a href="/class_student" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Học sinh trong lớp</span></a>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'class_weekday' in segment %} active {% endif %}">
+                        <a href="/class_weekday" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">Buổi học của lớp</span></a>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'attendance' in segment %} active {% endif %}">
+                        <a href="/attendance" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">Điểm danh</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>User</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'user' in segment %} active {% endif %}">
+                        <a href="/user" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">User</span></a>
+                    </li>
+                    <li data-username="Disabled Menu" class="nav-item">
+                        <a href="{{ url_for('authentication_blueprint.logout') }}" class="nav-link">
+                            <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

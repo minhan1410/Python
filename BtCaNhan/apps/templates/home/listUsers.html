@@ -1,0 +1,138 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css'>
+</head>
+
+{% extends "layouts/base.html" %}
+
+{% block title %} List Winemags {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+    #example_filter>label,
+    #example_length>label {
+        font-weight: bold;
+    }
+
+    .dataTables_length,
+    .dataTables_wrapper {
+        font-size: 1.6rem;
+    }
+
+    .dataTables_length select,
+    .dataTables_length input,
+    .dataTables_wrapper select,
+    .dataTables_wrapper input {
+        background-color: #f9f9f9;
+        border: 1px solid #999;
+        border-radius: 4px;
+        height: 3rem;
+        line-height: 2;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    .dataTables_length .dataTables_length,
+    .dataTables_length .dataTables_filter,
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+        margin-top: 30px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        display: inline-flex;
+    }
+
+    .paginate_button {
+        min-width: 4rem;
+        display: inline-block;
+        text-align: center;
+        padding: 1rem 1.6rem;
+        margin-top: 1rem;
+        border: 2px solid lightblue;
+    }
+
+    .paginate_button:not(.previous) {
+        border-left: none;
+    }
+
+    .paginate_button.previous {
+        border-radius: 8px 0 0 8px;
+        min-width: 7rem;
+    }
+
+    .paginate_button.next {
+        border-radius: 0 8px 8px 0;
+        min-width: 7rem;
+    }
+
+    .paginate_button:hover {
+        cursor: pointer;
+        background-color: #eee;
+        text-decoration: none;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="auth-wrapper">
+    <div class="auth-bg">
+        <span class="r"></span>
+        <span class="r s"></span>
+        <span class="r s"></span>
+        <span class="r"></span>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <div class="mb-4">
+                <i class="feather icon-users auth-icon"></i>
+            </div>
+            <h3 class="mb-4">List Users: {{length}}</h3>
+
+            <div class="container">
+                <div class="row">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="30%">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">student code</th>
+                                <th scope="col">First name</th>
+                                <th scope="col">Last name</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">CN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i,user in users %}
+                            <tr>
+                                <td>{{user['No']}}</td>
+                                <td>{{user['student code']}}</td>
+                                <td>{{user['First name']}}</td>
+                                <td>{{user['Last name']}}</td>
+                                <td>{{user['DOB']}}</td>
+                                <td>{{user['CN']}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    });
+</script>
+{% endblock javascripts %}

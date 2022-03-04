@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+
+
+{% block title %} Query Users {% endblock %}
+
+
+{% block content %}
+
+<div class="auth-wrapper">
+    <div class="auth-bg">
+        <span class="r"></span>
+        <span class="r s"></span>
+        <span class="r s"></span>
+        <span class="r"></span>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <div class="mb-4">
+                <i class="feather icon-search auth-icon"></i>
+            </div>
+            <h3 class="mb-4">Query Users</h3>
+
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" action = "http://localhost:1410/resultqueryusers" method = "POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="student code or class" aria-label="Search" name = "Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,104 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Class list of weekdays {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Class list of weekdays</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Class list of weekdays</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Class list of weekdays</h5>
+                                <a class="float-right" href="/class_weekday_form">
+                                    <button type="button" class="btn btn-outline-primary btn-sm mr-0 mb-0" title="Thêm mới buổi học cho lớp">
+                                        <div>Thêm mới <i class="feather icon-plus-circle"></i></div>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <form role="form" method="post" action="">
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table id="table" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Lớp học</th>
+                                                <th>Buổi học</th>
+                                                <th>Số giờ học</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for class_weekday, clas, weekday in class_weekdays %}
+                                            <tr>
+                                                <td>{{clas.lesson}}</td>
+                                                <td>{{weekday.name}}</td>
+                                                <td>{{class_weekday.hours}}</td>
+                                                <td>
+                                                    <div class="row">
+                                                        <button class="btn btn-outline-success btn-sm p-0 m-0" type="submit" name="attendance" value="{{class_weekday.id}}">
+                                                            <i class="feather icon-video m-1"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-warning btn-sm p-0 m-0 ml-2" type="submit" name="edit" value="{{class_weekday.id}}">
+                                                            <i class="feather icon-edit-2 m-1"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-danger btn-sm p-0 m-0 ml-2" type="submit" name="delete" value="{{class_weekday.id}}">
+                                                            <i class="feather icon-trash-2 m-1"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+
+    <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable();
+        });
+    </script>
+
+{% endblock javascripts %}

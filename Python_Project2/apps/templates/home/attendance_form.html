@@ -1,0 +1,118 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Attendance Form {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">
+                                    {% if attendance %}
+                                        Update Attendance   
+                                    {% else %}
+                                        Insert Attendance
+                                    {% endif %} 
+                                </h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/attendance">Attendance</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:">Attendance Form</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Attendance Form</h5>
+                            </div>
+                            <div class="card-body">
+                                    {% if msg %}
+                                        <span class="mb-0 text-muted">
+                                            {{ msg | safe }}     
+                                        </span>
+                                        <br><br>
+                                        {% else %}
+                                    {% endif %} 
+
+                                    {% if not success %}
+                                        <form role="form" method="post" action="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.hidden_tag() }} 
+                                                <div class="form-group">
+                                                    {{ form.class_id.label }}
+                                                    {% if attendance %}
+                                                        {{ form.class_id(class="form-control", value=attendance.class_id) }}
+                                                    {% else %}
+                                                        {{ form.class_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.student_id.label }}
+                                                    {% if attendance %}
+                                                        {{ form.student_id(class="form-control", value=attendance.student_id) }}
+                                                    {% else %}
+                                                        {{ form.student_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    {{ form.weekday_id.label }}
+                                                    {% if attendance %}
+                                                        {{ form.weekday_id(class="form-control", value=attendance.weekday_id) }}
+                                                    {% else %}
+                                                        {{ form.weekday_id(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.status.label }}
+                                                    {% if attendance %}
+                                                        {{ form.status(placeholder="Nhập trạng thái", class="form-control", value=attendance.status) }}
+                                                    {% else %}
+                                                        {{ form.status(placeholder="Nhập trạng thái", class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                {% if attendance %}
+                                                    <button type="submit" name="update_attendance" value="{{attendance.id}}" class="btn btn-primary">Cập nhập</button>
+                                                {% else %}
+                                                    <button type="submit" name="new_attendance" class="btn btn-primary">Thêm mới</button>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Hover-table ] end -->
+                    <!-- [ Main Content ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+
+{% endblock javascripts %}
